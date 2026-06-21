@@ -56,10 +56,8 @@ social:
 favicon: /img/site-logo-auto-20260621-100331.webp
 
 avatar:
-  img: /img/butterfly-icon.png
+  img: /img/avatar-auto-20260621-101300.webp
   effect: false
-
-# Disable all banner images
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
