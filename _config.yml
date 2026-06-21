@@ -1,13 +1,13 @@
-﻿# Hexo Configuration
+# Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
 title: "gjr's Blog"
 subtitle: "个分享 C++ 编程笔记的小站"
-description: 'My First Blog!'
+description: '分享知识，共同进步！'
 keywords:
-author: gjr
+author: 'VVensday'
 language: zh-CN
 timezone: "Asia/Shanghai"
 
@@ -103,4 +103,3 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
-
