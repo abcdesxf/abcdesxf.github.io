@@ -11,7 +11,7 @@
 
 nav:
   # Navigation bar logo image
-  logo:
+  logo: /img/site-logo-auto-20260621-100331.webp
   display_title: true
   display_post_title: true
   # Whether to fix navigation bar
@@ -53,7 +53,7 @@ social:
 # Image Settings
 # --------------------------------------
 
-favicon: /img/favicon.png
+favicon: /img/site-logo-auto-20260621-100331.webp
 
 avatar:
   img: /img/butterfly-icon.png
