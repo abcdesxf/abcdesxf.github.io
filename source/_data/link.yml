@@ -1,0 +1,27 @@
+- class_name: 友情链接
+  class_desc: 这里会存放一些有趣的网站、或是别的OIer的博客，欢迎访问这些网站！欢迎找我添加更多！（在主题测试页评论即可）
+  link_list:
+    - name: 洛谷
+      link: https://luogu.com.cn/
+      avatar: https://www.luogu.com.cn/favicon.ico
+      descr: 一个很好的OJ（？）
+
+    - name: 517编程
+      link: https://517coding.com/
+      avatar: https://517coding.com/favicon.ico
+      descr: wxz大大保佑我AC（？）
+
+    - name: 517Group
+      link: https://517group.cn/
+      avatar: https://517group.cn/favicon.ico
+      descr: 517团队官号！
+
+    - name: XianRui's Blog
+      link: https://blog.517group.cn/
+      avatar: https://blog.517group.cn/favicon/favicon-light-32.png
+      descr: zzg大佬的博客，英文看不懂qwq
+
+    - name: florr
+      link: https://florr.io/
+      avatar: https://florr.io/favicon.ico
+      descr: 一个很好玩的游戏（
