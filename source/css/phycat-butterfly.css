@@ -1919,3 +1919,42 @@ border-color: var(--primary-color) !important;
     transform: translateY(-5px);
     z-index: 10
 }
+
+/* ============================================================
+   PhyCat Footer Fix
+   Remove Butterfly's default blue footer
+   ============================================================ */
+
+#footer {
+  background-color: #070c08 !important;
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(12, 23, 15, 0.98),
+      rgba(3, 8, 5, 1)
+    ) !important;
+  border-top: 1px solid rgba(76, 217, 100, 0.3) !important;
+  box-shadow:
+    0 -10px 35px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(76, 217, 100, 0.08) !important;
+}
+
+#footer::before {
+  background: transparent !important;
+}
+
+#footer-wrap {
+  padding: 22px 20px !important;
+  background: transparent !important;
+  color: #99a699 !important;
+  text-shadow: 0 0 7px rgba(76, 217, 100, 0.18) !important;
+}
+
+#footer-wrap a {
+  color: #4cd964 !important;
+}
+
+#footer-wrap a:hover {
+  color: #29b6f6 !important;
+  text-shadow: 0 0 8px rgba(41, 182, 246, 0.55) !important;
+}
