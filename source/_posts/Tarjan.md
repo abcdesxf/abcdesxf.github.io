@@ -8,8 +8,8 @@ tags:
 categories:
   - "算法笔记"
 description: "此文详细地介绍了Tarjan算法的核心思想与用途。"
-cover: "/img/posts/20260625-221628-Tarjan/cover.png"
-top_img: "/img/posts/20260625-221628-Tarjan/cover.png"
+cover: "/img/posts/20260628-205038-Tarjan/cover.png"
+top_img: "/img/posts/20260628-205038-Tarjan/cover.png"
 ---
 
 # Tarjan 算法
@@ -685,6 +685,183 @@ int main() {
             cout << x << " ";
         }
         cout << "\n";
+    }
+    return 0;
+}
+```
+
+## 2-SAT问题
+
+### 什么是 2-SAT
+
+2-SAT 是布尔可满足性问题的一种特殊形式。
+
+给定若干个布尔变量：
+
+```cpp
+x1, x2, ..., xn
+```
+
+每个变量只能取 `true` 或 `false`。
+
+同时给出若干个限制条件，每个限制条件形如：
+
+```cpp
+(a ∨ b)
+```
+
+其中 `a` 和 `b` 都是某个布尔变量或其取反。
+
+例如：
+
+```cpp
+(x1 ∨ x2)
+(!x1 ∨ x3)
+(x2 ∨ !x3)
+```
+
+问题是：
+
+> 是否存在一种变量取值方案，使得所有限制条件同时成立。
+
+由于每个限制条件中恰好包含两个布尔表达式，因此称为 2-SAT。
+
+### 2-SAT 与图论建模
+
+2-SAT 的核心在于将逻辑限制转化为有向图上的可达性问题。
+
+对于一个限制条件：
+
+```cpp
+(a ∨ b)
+```
+
+它等价于下面两个蕴含关系：
+
+```cpp
+(!a -> b)
+(!b -> a)
+```
+
+原因是：
+
+* 如果 `a` 为假，那么为了使 `(a ∨ b)` 成立，`b` 必须为真。
+* 如果 `b` 为假，那么为了使 `(a ∨ b)` 成立，`a` 必须为真。
+
+因此，对于每个布尔变量 `x`，我们建立两个点：
+
+```cpp
+x
+!x
+```
+
+然后对于每个限制条件 `(a ∨ b)`，在图中加入两条有向边：
+
+```cpp
+!a -> b
+!b -> a
+```
+
+这样得到的图称为 2-SAT 的蕴含图。
+
+### 判定条件
+
+建图之后，可以使用 Tarjan 算法求出蕴含图中的强连通分量。
+
+对于任意变量 `x`：
+
+如果 `x` 和 `!x` 位于同一个强连通分量中，则无解。
+
+原因是：
+
+* `x` 可以推出 `!x`
+* `!x` 也可以推出 `x`
+
+这意味着 `x` 和 `!x` 必须同时成立，显然矛盾。
+
+因此，2-SAT 有解的充要条件是：
+
+```cpp
+对于任意变量 x，x 和 !x 不在同一个 SCC 中
+```
+
+### 构造一组可行解
+
+在判断有解之后，还可以根据 SCC 的拓扑序构造一组合法方案。
+
+Tarjan 求出的 SCC 可以看作缩点后的 DAG。
+
+对于每个变量 `x`，如果 `x` 所在 SCC 的拓扑序在 `!x` 所在 SCC 之后，则通常令 `x = true`；反之令 `x = false`。
+
+需要注意的是，不同代码中 SCC 编号顺序可能不同。
+
+### 代码
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+int n, m, ts, scc, ans, dfn[2000010], low[2000010], vis[2000010], num[2000010];
+vector<int> G[2000010], Scc[2000010];
+stack<int> stk;
+void tarjan(int u) {
+    dfn[u] = low[u] = ++ts;
+    stk.push(u);
+    vis[u] = 1;
+    for (int v : G[u]) {
+        if (!dfn[v]) {
+            tarjan(v);
+            low[u] = min(low[u], low[v]);
+        } else if (vis[v]) {
+            low[u] = min(low[u], dfn[v]);
+        }
+    }
+    if (dfn[u] == low[u]) {
+        scc++;
+        while (true) {
+            int x = stk.top();
+            stk.pop();
+            vis[x] = 0;
+            num[x] = scc;
+            Scc[scc].push_back(x);
+            if (x == u) break;
+        }
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, a, y, b;
+        cin >> x >> a >> y >> b;
+        if (a && b) {
+            G[x + n].push_back(y);
+            G[y + n].push_back(x);
+        } else if (!a && b) {
+            G[x].push_back(y);
+            G[y + n].push_back(x + n);
+        } else if (a && !b) {
+            G[y].push_back(x);
+            G[x + n].push_back(y + n);
+        } else {
+            G[x].push_back(y + n);
+            G[y].push_back(x + n);
+        }
+    }
+    for (int i = 1; i <= 2 * n; i++) {
+        if (!dfn[i]) tarjan(i);
+    }
+    for (int i = 1; i <= n; i++) {
+        if (num[i] == num[i + n]) {
+            cout << "IMPOSSIBLE";
+            return 0;
+        }
+    }
+    cout << "POSSIBLE\n";
+    for (int i = 1; i <= n; i++) {
+        if (num[i] < num[i + n]) {
+            cout << 1 << " ";
+        } else cout << 0 << " ";
     }
     return 0;
 }
