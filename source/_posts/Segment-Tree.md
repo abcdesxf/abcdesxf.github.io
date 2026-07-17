@@ -1,12 +1,15 @@
 ---
-title: '线段树'
-date: 2026-07-10 11:57:05
-updated: 2026-07-10 11:57:05
+title: "线段树详解"
+date: 2026-07-17 10:40:00
+updated: 2026-06-21 10:40:00
 tags:
-  - '算法笔记'
+  - "C++"
+  - "算法"
 categories:
-  - 'C++'
-description: ''
+  - "算法笔记"
+description: "此文详细地介绍了线段树的核心思想与用途。"
+cover: "/img/posts/20260717-104020-Segment-Tree/cover.png"
+top_img: "/img/posts/20260717-104020-Segment-Tree/cover.png"
 ---
 
 # 线段树
