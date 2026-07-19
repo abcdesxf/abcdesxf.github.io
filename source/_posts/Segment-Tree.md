@@ -8,8 +8,8 @@ tags:
 categories:
   - "算法笔记"
 description: "此文详细地介绍了线段树的核心思想与用途。"
-cover: "/img/posts/20260717-104020-Segment-Tree/cover.png"
-top_img: "/img/posts/20260717-104020-Segment-Tree/cover.png"
+cover: "/img/posts/20260719-224502-Segment-Tree/SegTreeHeadPicture.png"
+top_img: "/img/posts/20260719-224502-Segment-Tree/SegTreeHeadPicture.png"
 ---
 
 # 线段树
@@ -18,7 +18,7 @@ top_img: "/img/posts/20260717-104020-Segment-Tree/cover.png"
 
 线段树，顾名思义，即为线段构成的树结构，主要解决区间查询与修改以及类似的问题，可借助图片理解：
 
-<img src="https://cdn.luogu.com.cn/upload/image_hosting/e7slv7k5.png" style="zoom:80%;" />
+<img src="C:\Users\Administrator\Documents\Hexo-Butterfly-智能管理工具-v4\Hexo智能管理工具-v4\SegTreeHeadPicture.png" style="zoom:80%;" />
 
 ## 线段树的核心思想
 
